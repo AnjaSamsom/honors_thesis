@@ -204,6 +204,116 @@ def interest_increase(student_gender):
         print("different gender professor, less interested in CS: " + str(100*d_less/different_gender) + "%")
         print("different gender professor, same interest in CS: " + str(100*d_same/different_gender) + "%")
 
+def perceived_importance_categorize():
+    no = []
+    yes = []
+    maybe = []
+    for response in list_of_dicts:
+        importance = response["Do you think the gender of your instructor impacted your choice to continue to study (or \nnot study) computer science?"]
+        if "yes" in importance.lower():
+            yes.append(response)
+        elif "no" in importance.lower():
+            no.append(response)
+        elif "maybe" in importance.lower():
+            maybe.append(response)      
+        else:
+            print(importance)
+            choice = input()
+            if choice == "yes":
+                yes.append(response)
+            elif choice == "no":
+                no.append(response)
+            elif choice == "maybe":
+                maybe.append(response)
+    # female
+    f_yes, f_no, f_maybe = 0,0,0
+    #male
+    m_yes, m_no, m_maybe = 0,0,0
+    #non binary
+    n_yes, n_no, n_maybe = 0,0,0
+    # agender
+    a_yes, a_no, a_maybe = 0,0,0
+    #self describe
+    s_yes, s_no, s_maybe = 0,0,0
+
+
+    for response in yes:
+        respondent_gender = response["Gender - Selected Choice"]
+        if respondent_gender == "Female":
+            f_yes +=1
+        elif respondent_gender == "Male":
+            m_yes +=1
+        elif respondent_gender == "Non-binary":
+            n_yes +=1        
+        elif respondent_gender == "Agender":
+            a_yes +=1        
+        elif respondent_gender == "Other (please describe)":
+            s_yes +=1
+    for response in no:
+        respondent_gender = response["Gender - Selected Choice"]
+        if respondent_gender == "Female":
+            f_no +=1
+        elif respondent_gender == "Male":
+            m_no +=1
+        elif respondent_gender == "Non-binary":
+            n_no +=1        
+        elif respondent_gender == "Agender":
+            a_no +=1        
+        elif respondent_gender == "Other (please describe)":
+            s_no +=1
+
+    for response in maybe:
+        respondent_gender = response["Gender - Selected Choice"]
+        if respondent_gender == "Female":
+            f_maybe +=1
+        elif respondent_gender == "Male":
+            m_maybe +=1
+        elif respondent_gender == "Non-binary":
+            n_maybe +=1        
+        elif respondent_gender == "Agender":
+            a_maybe +=1        
+        elif respondent_gender == "Other (please describe)":
+            s_maybe +=1
+    
+    
+    f_total = f_yes + f_no + f_maybe
+    m_total = m_yes + m_no + m_maybe
+    n_total = n_yes + n_no + n_maybe
+    a_total = a_yes + a_no + a_maybe
+    s_total = s_yes + s_no + s_maybe
+
+    print("Female")
+    print("yes" + str(f_yes/f_total))
+    print("no" + str(f_no/f_total))
+    print("maybe" + str(f_maybe/f_total))
+
+    print("Male")
+    print("yes" + str(m_yes/m_total))
+    print("no" + str(m_no/m_total))
+    print("maybe" + str(m_maybe/m_total))
+
+    print("Non Binary")
+    print("yes" + str(n_yes/n_total))
+    print("no" + str(n_no/n_total))
+    print("maybe" + str(n_maybe/n_total))
+
+    print("Agender")
+    print("yes" + str(a_yes/a_total))
+    print("no" + str(a_no/a_total))
+    print("maybe" + str(a_maybe/a_total))
+
+    print("Self describe")
+    print("yes" + str(s_yes/s_total))
+    print("no" + str(s_no/s_total))
+    print("maybe" + str(s_maybe/s_total))
+
+
+
+
+    
+perceived_importance_categorize()
+
+
 """ interest_increase("Female")
 interest_increase("Male")
 interest_increase("Non-binary")
@@ -214,19 +324,19 @@ interest_increase("Other (please describe)") """
 professor_interest_increase("Male") """
 
 
-continue_with_cs("Female")
+""" continue_with_cs("Female")
 continue_with_cs("Male")
 continue_with_cs("Non-binary")
 continue_with_cs("Agender")
-continue_with_cs("Other (please describe)") 
+continue_with_cs("Other (please describe)")  """
 
 """
 professor_continue_with_cs("Female")
 professor_continue_with_cs("Male")
 """
 
-#respondent_gender() 
-# teacher_gender()
+""" respondent_gender() 
+teacher_gender() """
 
 
 
