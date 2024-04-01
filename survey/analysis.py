@@ -1,13 +1,12 @@
-import csv
 from csv import DictReader
- 
+
 filename ="survey/data_cleaned.csv"
  
 with open(filename, "r", encoding="utf-8") as f:
     dict_reader = DictReader(f)
     list_of_dicts = list(dict_reader)
 
-
+# reported gender of teachers that respondents had
 def teacher_gender():
     female = 0
     male = 0
@@ -38,6 +37,7 @@ def teacher_gender():
     print("Agender: " + str(agender))
     print("Other (please describe): " + str(other))
 
+# gender of respondents
 def respondent_gender():
     female = 0
     male = 0
@@ -68,6 +68,7 @@ def respondent_gender():
     print("Agender: " + str(agender))
     print("Other (please describe): " + str(other))
 
+# which gender teacher has a higher success rate of students staying in computer science after the experience?
 def professor_continue_with_cs(gender):
     yes = 0
     no = 0
@@ -89,6 +90,7 @@ def professor_continue_with_cs(gender):
     print("Yes = " + str(yes/total))
     print("No = " + str(no/total))
 
+# statistics about respondents continuing in computer science grouped by gender of student and professor being the same of different
 def continue_with_cs(student_gender):
     yes_same = 0
     no_same = 0
@@ -130,6 +132,7 @@ def continue_with_cs(student_gender):
         print("different gender professor, continued (Yes): " + str(100*yes_dif/different_gender) + "%")
         print("different gender professor, didn't continue (No): " + str(100*no_dif/different_gender) + "%")
 
+# do female or male professors have a larger percentage of reports of students being more interested in computer science after the experience?
 def professor_interest_increase(gender):
     more = 0
     same = 0
@@ -154,6 +157,7 @@ def professor_interest_increase(gender):
     print("Same = " + str(same/total))
     print("Less = " + str(less/total))
 
+# are students more interested in computer science when they share the gender of their teacher?
 def interest_increase(student_gender):
     same_gender = 0
     different_gender = 0
@@ -204,6 +208,7 @@ def interest_increase(student_gender):
         print("different gender professor, less interested in CS: " + str(100*d_less/different_gender) + "%")
         print("different gender professor, same interest in CS: " + str(100*d_same/different_gender) + "%")
 
+# used to categorize responses that didn't fall into yes, no, or maybe
 def perceived_importance_categorize():
     no = []
     yes = []
@@ -307,36 +312,32 @@ def perceived_importance_categorize():
     print("no" + str(s_no/s_total))
     print("maybe" + str(s_maybe/s_total))
 
+respondent_gender() 
+teacher_gender()
 
-
-
-    
 perceived_importance_categorize()
 
-
-""" interest_increase("Female")
+interest_increase("Female")
 interest_increase("Male")
 interest_increase("Non-binary")
 interest_increase("Agender")
-interest_increase("Other (please describe)") """
+interest_increase("Other (please describe)")
 
-""" professor_interest_increase("Female")
-professor_interest_increase("Male") """
+professor_interest_increase("Female")
+professor_interest_increase("Male")
 
 
-""" continue_with_cs("Female")
+continue_with_cs("Female")
 continue_with_cs("Male")
 continue_with_cs("Non-binary")
 continue_with_cs("Agender")
-continue_with_cs("Other (please describe)")  """
+continue_with_cs("Other (please describe)")
 
-"""
+
 professor_continue_with_cs("Female")
 professor_continue_with_cs("Male")
-"""
 
-""" respondent_gender() 
-teacher_gender() """
+
 
 
 
